@@ -38,144 +38,156 @@
 
 class Options
 {
-    public:
-        Options();
+public:
+    Options();
 
-        Options(const Options&) = delete;
-        Options& operator=(const Options&) = delete;
+    Options(const Options &) = delete;
+    Options &operator=(const Options &) = delete;
 
-    public:
-        bool parseCommandLine(int argc, const char* const* argv);
+public:
+    bool parseCommandLine(int argc, const char *const *argv);
 
-        const std::string& getInputFilename() const
-        {
-            return input_filename_;
-        }
+    const std::string &getInputFilename() const
+    {
+        return input_filename_;
+    }
 
-        const std::string& getOutputFilename() const
-        {
-            return output_filename_;
-        }
+    const std::string &getOutputFilename() const
+    {
+        return output_filename_;
+    }
 
-        bool getSplitChannels() const { return split_channels_; }
+    bool getSplitChannels() const { return split_channels_; }
 
-        bool hasInputFormat() const { return has_input_format_; }
+    bool hasInputFormat() const { return has_input_format_; }
 
-        const std::string& getInputFormat() const
-        {
-            return input_format_;
-        }
+    const std::string &getInputFormat() const
+    {
+        return input_format_;
+    }
 
-        bool hasOutputFormat() const { return has_output_format_; }
+    bool hasOutputFormat() const { return has_output_format_; }
 
-        const std::string& getOutputFormat() const
-        {
-            return output_format_;
-        }
+    const std::string &getOutputFormat() const
+    {
+        return output_format_;
+    }
 
-        double getStartTime() const { return start_time_; }
-        double getEndTime() const { return end_time_; }
-        bool hasEndTime() const { return has_end_time_; }
+    double getStartTime() const { return start_time_; }
+    double getEndTime() const { return end_time_; }
+    bool hasEndTime() const { return has_end_time_; }
 
-        int getSamplesPerPixel() const { return samples_per_pixel_; }
-        bool isAutoSamplesPerPixel() const { return auto_samples_per_pixel_; }
-        bool hasSamplesPerPixel() const { return has_samples_per_pixel_; }
+    int getSamplesPerPixel() const { return samples_per_pixel_; }
+    bool isAutoSamplesPerPixel() const { return auto_samples_per_pixel_; }
+    bool hasSamplesPerPixel() const { return has_samples_per_pixel_; }
 
-        int getPixelsPerSecond() const { return pixels_per_second_; }
-        bool hasPixelsPerSecond() const { return has_pixels_per_second_; }
+    int getPixelsPerSecond() const { return pixels_per_second_; }
+    bool hasPixelsPerSecond() const { return has_pixels_per_second_; }
 
-        int getBits() const { return bits_; }
-        bool hasBits() const { return has_bits_; }
-        int getImageWidth() const { return image_width_; }
-        int getImageHeight() const { return image_height_; }
+    int getBits() const { return bits_; }
+    bool hasBits() const { return has_bits_; }
+    int getImageWidth() const { return image_width_; }
+    int getImageHeight() const { return image_height_; }
 
-        const std::string& getColorScheme() const { return color_scheme_; }
+    const std::string &getColorScheme() const { return color_scheme_; }
 
-        const RGBA& getBorderColor() const { return border_color_; }
-        const RGBA& getBackgroundColor() const { return background_color_; }
-        const RGBA& getWaveformColor() const { return waveform_color_; }
-        const RGBA& getAxisLabelColor() const { return axis_label_color_; }
+    const RGBA &getBorderColor() const { return border_color_; }
+    const RGBA &getBackgroundColor() const { return background_color_; }
+    const RGBA &getWaveformColor() const { return waveform_color_; }
+    const RGBA &getAxisLabelColor() const { return axis_label_color_; }
 
-        bool hasBorderColor() const { return has_border_color_; }
-        bool hasBackgroundColor() const { return has_background_color_; }
-        bool hasWaveformColor() const { return has_waveform_color_; }
-        bool hasAxisLabelColor() const { return has_axis_label_color_; }
+    bool hasBorderColor() const { return has_border_color_; }
+    bool hasBackgroundColor() const { return has_background_color_; }
+    bool hasWaveformColor() const { return has_waveform_color_; }
+    bool hasAxisLabelColor() const { return has_axis_label_color_; }
 
-        bool getRenderAxisLabels() const { return render_axis_labels_; }
+    // Setters for the input filenae
+    void setInputFilename(std::string input_filename)
+    {
+        input_filename_ = input_filename;
+    }
 
-        bool isAutoAmplitudeScale() const { return auto_amplitude_scale_; }
-        double getAmplitudeScale() const { return amplitude_scale_; }
+    // void setInputFilename(std::string input_filename) const { input_filename_ = input_filename; }
+    bool getRenderAxisLabels() const { return render_axis_labels_; }
 
-        int getPngCompressionLevel() const { return png_compression_level_; }
+    bool isAutoAmplitudeScale() const { return auto_amplitude_scale_; }
+    double getAmplitudeScale() const { return amplitude_scale_; }
+    std::string getUrl() const { return url_; }
 
-        bool getQuiet() const { return quiet_; }
+    int getPngCompressionLevel() const { return png_compression_level_; }
 
-        bool getHelp() const { return help_; }
-        bool getVersion() const { return version_; }
+    bool getQuiet() const { return quiet_; }
 
-        void showUsage(std::ostream& stream) const;
-        void showVersion(std::ostream& stream) const;
+    bool getHelp() const { return help_; }
+    bool getVersion() const { return version_; }
 
-        void reportError(const std::string& message) const;
+    void showUsage(std::ostream &stream) const;
+    void showVersion(std::ostream &stream) const;
 
-    private:
-        void handleAmplitudeScaleOption(const std::string& option_value);
-        void handleZoomOption(const std::string& option_value);
+    void reportError(const std::string &message) const;
+    std::string input_filename_;
 
-    private:
-        boost::program_options::options_description desc_;
+private:
+    void handleAmplitudeScaleOption(const std::string &option_value);
+    void handleZoomOption(const std::string &option_value);
 
-        std::string program_name_;
+private:
+    boost::program_options::options_description desc_;
 
-        bool quiet_;
-        bool help_;
-        bool version_;
+    std::string program_name_;
 
-        std::string input_filename_;
-        std::string output_filename_;
+    bool quiet_;
+    bool help_;
+    bool version_;
 
-        bool split_channels_;
+    std::string output_filename_;
 
-        bool has_input_format_;
-        std::string input_format_;
+    // Network stream options:
+    std::string url_;
+    std::string fileName_;
 
-        bool has_output_format_;
-        std::string output_format_;
+    bool split_channels_;
 
-        double start_time_;
-        double end_time_;
-        bool has_end_time_;
+    bool has_input_format_;
+    std::string input_format_;
 
-        int samples_per_pixel_;
-        bool auto_samples_per_pixel_;
-        bool has_samples_per_pixel_;
+    bool has_output_format_;
+    std::string output_format_;
 
-        int pixels_per_second_;
-        bool has_pixels_per_second_;
+    double start_time_;
+    double end_time_;
+    bool has_end_time_;
 
-        int image_width_;
-        int image_height_;
-        int bits_;
-        bool has_bits_;
+    int samples_per_pixel_;
+    bool auto_samples_per_pixel_;
+    bool has_samples_per_pixel_;
 
-        std::string color_scheme_;
+    int pixels_per_second_;
+    bool has_pixels_per_second_;
 
-        RGBA border_color_;
-        RGBA background_color_;
-        RGBA waveform_color_;
-        RGBA axis_label_color_;
+    int image_width_;
+    int image_height_;
+    int bits_;
+    bool has_bits_;
 
-        bool has_border_color_;
-        bool has_background_color_;
-        bool has_waveform_color_;
-        bool has_axis_label_color_;
+    std::string color_scheme_;
 
-        bool render_axis_labels_;
+    RGBA border_color_;
+    RGBA background_color_;
+    RGBA waveform_color_;
+    RGBA axis_label_color_;
 
-        bool auto_amplitude_scale_;
-        double amplitude_scale_;
+    bool has_border_color_;
+    bool has_background_color_;
+    bool has_waveform_color_;
+    bool has_axis_label_color_;
 
-        int png_compression_level_;
+    bool render_axis_labels_;
+
+    bool auto_amplitude_scale_;
+    double amplitude_scale_;
+
+    int png_compression_level_;
 };
 
 //------------------------------------------------------------------------------

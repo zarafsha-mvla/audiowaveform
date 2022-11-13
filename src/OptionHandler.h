@@ -38,49 +38,44 @@ class Options;
 
 class OptionHandler
 {
-    public:
-        OptionHandler();
+public:
+    OptionHandler();
 
-        OptionHandler(const OptionHandler&) = delete;
-        OptionHandler& operator=(const OptionHandler&) = delete;
+    OptionHandler(const OptionHandler &) = delete;
+    OptionHandler &operator=(const OptionHandler &) = delete;
 
-    public:
-        bool run(const Options& options);
+public:
+    bool run(Options &options);
 
-    private:
-        bool convertAudioFormat(
-            const boost::filesystem::path& input_filename,
-            const FileFormat::FileFormat input_format,
-            const boost::filesystem::path& output_filename
-        );
+private:
+    bool convertAudioFormat(
+        const boost::filesystem::path &input_filename,
+        const FileFormat::FileFormat input_format,
+        const boost::filesystem::path &output_filename);
 
-        bool generateWaveformData(
-            const boost::filesystem::path& input_filename,
-            FileFormat::FileFormat input_format,
-            const boost::filesystem::path& output_filename,
-            FileFormat::FileFormat output_format,
-            const Options& options
-        );
+    bool generateWaveformData(
+        const boost::filesystem::path &input_filename,
+        FileFormat::FileFormat input_format,
+        const boost::filesystem::path &output_filename,
+        FileFormat::FileFormat output_format,
+        const Options &options);
 
-        bool convertWaveformData(
-            const boost::filesystem::path& input_filename,
-            const boost::filesystem::path& output_filename,
-            FileFormat::FileFormat output_format,
-            const Options& options
-        );
+    bool convertWaveformData(
+        const boost::filesystem::path &input_filename,
+        const boost::filesystem::path &output_filename,
+        FileFormat::FileFormat output_format,
+        const Options &options);
 
-        bool renderWaveformImage(
-            const boost::filesystem::path& input_filename,
-            FileFormat::FileFormat input_format,
-            const boost::filesystem::path& output_filename,
-            const Options& options
-        );
+    bool renderWaveformImage(
+        const boost::filesystem::path &input_filename,
+        FileFormat::FileFormat input_format,
+        const boost::filesystem::path &output_filename,
+        const Options &options);
 
-        bool resampleWaveformData(
-            const boost::filesystem::path& input_filename,
-            const boost::filesystem::path& output_filename,
-            const Options& options
-        );
+    bool resampleWaveformData(
+        const boost::filesystem::path &input_filename,
+        const boost::filesystem::path &output_filename,
+        const Options &options);
 };
 
 //------------------------------------------------------------------------------
