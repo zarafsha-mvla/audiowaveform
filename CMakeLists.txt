@@ -253,6 +253,7 @@ set(MODULES
     src/WaveformUtil.cpp
     src/WavFileWriter.cpp
     src/madlld-1.1p1/bstdfile.c
+    src/Network.cpp
 )
 
 set(SRCS
@@ -267,6 +268,7 @@ add_executable(audiowaveform ${SRCS})
 # Linker
 #
 #-------------------------------------------------------------------------------
+ find_package( CURL REQUIRED )
 
 # Specify libraries to link against.
 set(
@@ -276,9 +278,9 @@ set(
     ${LIBMAD_LIBRARIES}
     ${LIBID3TAG_LIBRARIES}
     ${Boost_LIBRARIES}
+    curl
 )
-
-target_link_libraries(audiowaveform ${LIBS})
+ target_link_libraries(audiowaveform ${LIBS})
 
 #-------------------------------------------------------------------------------
 #
