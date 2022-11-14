@@ -669,11 +669,11 @@ bool OptionHandler::run(Options &options)
         log(Info) << "Done\n";
 
         // Clean up the files downloaded
-        if (!url.empty())
-        {
-            std::cout << "Removing file: " << fileName << std::endl;
-            remove(fileName.c_str());
-        }
+//        if (!url.empty())
+//        {
+//            std::cout << "Removing file: " << fileName << std::endl;
+//            remove(fileName.c_str());
+//        }
     }
 
     return success;
